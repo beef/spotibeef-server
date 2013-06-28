@@ -1,0 +1,26 @@
+<h2>Playlist</h2>
+<div>
+<table>
+<thead>
+	<tr>
+		<th>Track</th>
+		<th>Album</th>
+		<th>Artist</th>
+	</tr>
+<thead>
+<tbody>
+<% tracks.tracks.forEach(function(track){ %>
+	<tr>
+		<td><%= track.data.name %></td>
+		<td><%= track.data.album.name %></td>
+		<td><%= track.data.album.artist.name %></td>
+		<% if(track.data.uri === current_track_uri) { %>
+			<td class="queue-track playing" data-track-uri="<%= track.data.uri %>">queue</td>
+		<% } else { %>
+			<td class="queue-track" data-track-uri="<%= track.data.uri %>">queue</td>
+		<% } %>
+	</tr>
+<% }) %>
+</tbody>
+</table>
+</div>
