@@ -15,10 +15,10 @@
 		<td><%= track.data.name %></td>
 		<td><%= track.data.album.name %></td>
 		<td><%= track.data.album.artist.name %></td>
-		<% if(track.data.uri === current_track_uri) { %>
-			<td class="remove-track playing" data-track-uri="<%= track.data.uri %>">remove</td>
+		<% if(track.data.uri===current_uri) { %>
+			<td class="playing action remove-track" data-track-uri="<%= track.data.uri %>">remove</td>
 		<% } else { %>
-			<td class="remove-track" data-track-uri="<%= track.data.uri %>">remove</td>
+			<td class="action remove-track" data-track-uri="<%= track.data.uri %>">remove</td>
 		<% } %>
 	</tr>
 <% }) %>

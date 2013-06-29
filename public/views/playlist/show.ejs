@@ -14,11 +14,12 @@
 		<td><%= track.data.name %></td>
 		<td><%= track.data.album.name %></td>
 		<td><%= track.data.album.artist.name %></td>
-		<% if(track.data.uri === current_track_uri) { %>
-			<td class="queue-track playing" data-track-uri="<%= track.data.uri %>">queue</td>
+		<% if(track.data.uri===current_uri) { %>
+			<td class="playing action queue-track" data-track-uri="<%= track.data.uri %>">queue</td>
 		<% } else { %>
-			<td class="queue-track" data-track-uri="<%= track.data.uri %>">queue</td>
+			<td class="action queue-track" data-track-uri="<%= track.data.uri %>">queue</td>
 		<% } %>
+		
 	</tr>
 <% }) %>
 </tbody>

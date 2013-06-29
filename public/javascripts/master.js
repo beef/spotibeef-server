@@ -12,7 +12,7 @@ var next_button  = document.getElementById("next");
 var previous_button  = document.getElementById("previous");
 controls_setup();
 //
-var current_track_uri;
+var current_uri;
 
 console.log("asking for track");
 socket.emit('get_track', { action: 'get track' });
@@ -39,6 +39,7 @@ socket.on('current_track_changed', function (data) {
     html = new EJS({url: '/views/current_track/show.ejs'}).render(data)
     current_track.innerHTML = html;
     queue_setup();
+    current_uri = data.track_data.uri;
     //
     var cover = document.getElementById("cover")
     cover_img_url = data.track_data.cover.split(":");
@@ -49,15 +50,13 @@ socket.on('current_track_changed', function (data) {
     	cover.appendChild(cover_img);
   	}
 
-  	current_track_uri = data.track_data.uri;
-  	mark_playing_track();
+
 });
 
 function playlist_setup() {
 	var queue_track_buttons = document.getElementsByClassName('queue-track');
 
 	for(var i=0;i<queue_track_buttons.length;i++) {
-		//
 		queue_track_buttons[i].onclick = function() {
 			console.log('queue this track: '+this.getAttribute("data-track-uri"));
 			socket.emit('queue_this_track', { data: this.getAttribute("data-track-uri") });
@@ -87,24 +86,10 @@ function controls_setup() {
 	}
 	previous_button.onclick = function() {
 		socket.emit('previous_track', { action: 'previous' });
+		current_uri = null;
 	}
 	next_button.onclick = function() {
 		socket.emit('next_track', { action: 'next' });
-	}
-}
-
-function mark_playing_track() {
-	console.log(current_track_uri);
-	var currently_playing = document.getElementsByClassName('playing');
-	for(var i=0;i<tds.length;i++) {
-
-	}
-	var tds = document.getElementsByTagName('td');
-	for(var i=0;i<tds.length;i++) {
-		console.log(tds[i].getAttribute("data-track-uri"));
-		if(tds[i].getAttribute("data-track-uri")===current_track_uri) {
-			tds[i].className = tds[i].className = " playing";
-			console.log('this matches');
-		}
+		current_uri = null;
 	}
 }
