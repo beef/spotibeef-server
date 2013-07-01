@@ -61,6 +61,7 @@ function playlist_setup() {
 		queue_track_buttons[i].onclick = function() {
 			console.log('queue this track: '+this.getAttribute("data-track-uri"));
 			socket.emit('queue_this_track', { data: this.getAttribute("data-track-uri") });
+			return false;
 		}
 	}
 	
@@ -73,6 +74,7 @@ function queue_setup() {
 		remove_track_buttons[i].onclick = function() {
 			console.log('remove this track: '+this.getAttribute("data-track-uri"));
 			socket.emit('remove_this_track', { data: this.getAttribute("data-track-uri") });
+			return false;
 		}
 	}
 	
