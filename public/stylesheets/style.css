@@ -1,7 +1,25 @@
-a {
-  color: #00B7FF;
+/*Titles*/
+.details{
+	font-size: 20px;
+	font-weight: bold;
 }
 
-.playing {
-	background-color: green;
+.details span {
+	font-weight: normal;
+}
+
+/*Image*/
+#cover img {width: 100%;}
+
+/*Sortable*/
+th i{ float: right;}
+th.sort-down i.icon-chevron-up {display: none;}
+th.sort-up i.icon-chevron-down {display: none;}
+
+/*Header*/
+#controls{padding: 0 0 10px 0;}
+
+a.brand{
+	font-size: 30px;
+	padding-top: 17px;
 }

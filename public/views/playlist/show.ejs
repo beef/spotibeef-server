@@ -1,25 +1,20 @@
-<h2>Playlist</h2>
+<h2>Libary</h2>
 <div>
-<table>
+<table id="table-libary" class="table table-condensed table-bordered table-striped">
 <thead>
 	<tr>
-		<th>Track</th>
-		<th>Album</th>
-		<th>Artist</th>
+		<th>Track <i class="icon-chevron-up"></i><i class="icon-chevron-down"></i></th>
+		<th>Album <i class="icon-chevron-up"></i><i class="icon-chevron-down"></i></th>
+		<th>Artist <i class="icon-chevron-up"></i><i class="icon-chevron-down"></i></th>
 	</tr>
 <thead>
 <tbody>
 <% tracks.tracks.forEach(function(track){ %>
-	<tr>
+		<tr>
 		<td><%= track.data.name %></td>
 		<td><%= track.data.album.name %></td>
 		<td><%= track.data.album.artist.name %></td>
-		<% if(track.data.uri===current_uri) { %>
-			<td class="playing action queue-track" data-track-uri="<%= track.data.uri %>">queue</td>
-		<% } else { %>
-			<td class="action queue-track" data-track-uri="<%= track.data.uri %>">queue</td>
-		<% } %>
-		
+		<td class="action queue-track" data-track-uri="<%= track.data.uri %>"><span class="btn btn-info btn-mini">Queue</span></td>
 	</tr>
 <% }) %>
 </tbody>

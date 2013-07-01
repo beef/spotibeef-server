@@ -27,6 +27,7 @@ socket.on('current_playlist', function (data) {
     html = new EJS({url: '/views/playlist/show.ejs'}).render(data)
     playlist.innerHTML = html;
     playlist_setup();
+    new Tablesort(document.getElementById('table-libary'));
 });
 
 socket.on('current_queue', function (data) {
