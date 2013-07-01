@@ -1,7 +1,7 @@
-<h2>Queue</h2>
+<h2>Play Queue</h2>
 
 <div>
-<table>
+<table class="table table-condensed table-bordered table-striped">
 <thead>
 	<tr>
 		<th>Track</th>
@@ -11,15 +11,15 @@
 <thead>
 <tbody>
 <% tracks.tracks.forEach(function(track){ %>
-	<tr>
+	<% if(track.data.uri === current_track_uri) { %>
+		<tr class="success">
+	<% } else { %>
+		<tr>
+	<% } %>
 		<td><%= track.data.name %></td>
 		<td><%= track.data.album.name %></td>
 		<td><%= track.data.album.artist.name %></td>
-		<% if(track.data.uri === current_track_uri) { %>
-			<td class="remove-track playing" data-track-uri="<%= track.data.uri %>">remove</td>
-		<% } else { %>
-			<td class="remove-track" data-track-uri="<%= track.data.uri %>">remove</td>
-		<% } %>
+		<td class="remove-track" data-track-uri="<%= track.data.uri %>"><span class="btn btn-danger btn-mini">remove</span></td>
 	</tr>
 <% }) %>
 </tbody>
