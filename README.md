@@ -4,6 +4,8 @@ Spotibeef Server
 
 This is a simple nodejs server and client using socket.io to communicate with the Spotibeef plugin. It has been built to be used with the [Spotibeef Spotify Plugin](https://github.com/beef/spotibeef)  This allows you to control the play back and gather information from the player.
 
+It is hacky as. Be warned.
+
 Install
 -----
 - Sign up for Spotify developer account
