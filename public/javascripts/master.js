@@ -4,6 +4,7 @@ var play_track_button;
 //
 var current_track = document.getElementById('current_track');
 var queue = document.getElementById('queue');
+var pagination = document.getElementById('pagination');
 var playlist = document.getElementById('playlist');
 //
 var play_button  = document.getElementById("play");
@@ -17,8 +18,8 @@ var current_uri;
 console.log("asking for track");
 socket.emit('get_track', { action: 'get track' });
 
-console.log("asking for playlist");
-socket.emit('get_playlist', { action: 'get playlist' });
+console.log("asking for playlist length");
+socket.emit('get_playlist_length', { action: 'get playlist length' });
 
 console.log("asking for queue");
 socket.emit('get_queue', { action: 'get queue' });
@@ -28,6 +29,13 @@ socket.on('current_playlist', function (data) {
     playlist.innerHTML = html;
     playlist_setup();
     new Tablesort(document.getElementById('table-libary'));
+});
+
+socket.on('current_playlist_length', function (data) {
+    num_pages = Math.round(data.length/50);
+   	html = new EJS({url: '/views/playlist/pagination.ejs'}).render(num_pages);
+   	pagination.innerHTML = html;
+   	pagination_setup();
 });
 
 socket.on('current_queue', function (data) {
@@ -53,6 +61,17 @@ socket.on('current_track_changed', function (data) {
 
 
 });
+
+function pagination_setup() {
+	var pagination_buttons = document.getElementsByClassName('pages');
+
+	for(var i=0;i<pagination_buttons.length;i++) {
+		pagination_buttons[i].onclick = function() {
+			socket.emit('get_playlist', { from: this.getAttribute("data-pages-from"), to: this.getAttribute("data-pages-to") });
+			return false;
+		}
+	}
+}
 
 function playlist_setup() {
 	var queue_track_buttons = document.getElementsByClassName('queue-track');

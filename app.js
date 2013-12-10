@@ -87,11 +87,20 @@ io.sockets.on('connection', function (socket) {
 
   //get the playlist
   socket.on('get_playlist', function (data) {
-    socket.broadcast.emit('get_the_playlist', { action: 'get_the_playlist' });
+    socket.broadcast.emit('get_the_playlist', { slice: data });
+  });
+
+  //get the playlist length
+  socket.on('get_playlist_length', function (data) {
+    socket.broadcast.emit('get_the_playlist_length', { action: 'get_the_playlist_length' });
   });
 
   socket.on('the_playlist', function (data) {
     socket.broadcast.emit('current_playlist', { tracks: data});
+  });
+
+  socket.on('the_playlist_length', function (data) {
+    socket.broadcast.emit('current_playlist_length', { length: data.tracks});
   });
 
   //get the queue
