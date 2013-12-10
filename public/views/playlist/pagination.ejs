@@ -1,0 +1,9 @@
+<ul class="pagination">
+	<% for(var i=0;i<num_pages;i++) { 
+			var from = i*50;
+			var to = from+50;
+	%>
+
+		<li><a href="#" class="pages" data-pages-from="<%= from %>" data-pages-to="<%= to %>"><%= i %></a></li>
+	<% } %>
+</ul>
