@@ -62,12 +62,19 @@ socket.on('current_track_changed', function (data) {
 
 });
 
+
 function pagination_setup() {
 	var pagination_buttons = document.getElementsByClassName('pages');
 
 	for(var i=0;i<pagination_buttons.length;i++) {
 		pagination_buttons[i].onclick = function() {
 			socket.emit('get_playlist', { from: this.getAttribute("data-pages-from"), to: this.getAttribute("data-pages-to") });
+
+			var selected = document.getElementsByClassName('active');
+			for(var i = 0; i<selected.length;i++) {
+			   selected[i].className = selected[i].className.replace('active','');
+			}
+			this.className += " active";
 			return false;
 		}
 	}
