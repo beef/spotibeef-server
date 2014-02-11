@@ -72,9 +72,9 @@ function pagination_setup() {
 
 			var selected = document.getElementsByClassName('active');
 			for(var i = 0; i<selected.length;i++) {
-			   selected[i].className = selected[i].className.replace('active','');
+			   selected[i].parentNode.className = selected[i].parentNode.className.replace('active','');
 			}
-			this.className += " active";
+			this.parentNode.className += " active";
 			return false;
 		}
 	}

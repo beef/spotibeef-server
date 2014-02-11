@@ -7,6 +7,7 @@
 		<th>Track</th>
 		<th>Album</th>
 		<th>Artist</th>
+	  <th>Action</th>
 	</tr>
 <thead>
 <tbody>
@@ -15,7 +16,7 @@
 		<td><%= track.data.name %></td>
 		<td><%= track.data.album.name %></td>
 		<td><%= track.data.album.artist.name %></td>
-		<td class="remove-track" data-track-uri="<%= track.data.uri %>"><span class="btn btn-danger btn-mini">remove</span></td>
+		<td class="remove-track" data-track-uri="<%= track.data.uri %>"><span class="btn btn-danger btn-xs">remove</span></td>
 	</tr>
 <% }) %>
 </tbody>
