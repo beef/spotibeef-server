@@ -1,4 +1,4 @@
-var socket = io.connect('http://127.0.0.1');
+var socket = io.connect('http://192.168.0.23');
 //
 var play_track_button;
 //
@@ -72,7 +72,7 @@ function pagination_setup() {
 
 			var selected = document.getElementsByClassName('active');
 			for(var i = 0; i<selected.length;i++) {
-			   selected[i].parentNode.className = selected[i].parentNode.className.replace('active','');
+			   selected[i].className = selected[i].className.replace('active','');
 			}
 			this.parentNode.className += " active";
 			return false;
